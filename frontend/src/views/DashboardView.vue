@@ -11,6 +11,7 @@
 
 <script>
 import TransactionsTable from "@/components/TransactionsTable.vue";
+import * as api from "@/api.js";
 
 export default {
   name: "DashboardView",
@@ -46,6 +47,9 @@ export default {
         },
       ],
     };
+  },
+  async created() {
+    await api.getAllUsers();
   },
 };
 </script>
