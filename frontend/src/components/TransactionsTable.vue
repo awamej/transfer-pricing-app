@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: "ReposTable",
+  name: 'ReposTable',
   props: {
     transactions: Array,
   },

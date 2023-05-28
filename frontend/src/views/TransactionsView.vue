@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import TransactionsTable from "@/components/TransactionsTable.vue";
+import TransactionsTable from '@/components/TransactionsTable.vue';
 
 export default {
   components: {

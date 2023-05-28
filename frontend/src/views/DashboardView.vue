@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import TransactionsTable from "@/components/TransactionsTable.vue";
-import * as api from "@/api.js";
+import TransactionsTable from '@/components/TransactionsTable.vue';
+import * as api from '@/api.js';
 
 export default {
-  name: "DashboardView",
+  name: 'DashboardView',
   components: {
     TransactionsTable,
   },
@@ -22,28 +22,28 @@ export default {
     return {
       transactions: [
         {
-          seller: "Alpaca Inc.",
-          buyer: "Cisco Systems Inc.",
-          type: "Cost-based",
-          value: "1 325 857,78",
+          seller: 'Alpaca Inc.',
+          buyer: 'Cisco Systems Inc.',
+          type: 'Cost-based',
+          value: '1 325 857,78',
         },
         {
-          seller: "Cisco Systems Inc.",
-          buyer: "Alpaca.",
-          type: "Cost-based",
-          value: "5 325 857,78",
+          seller: 'Cisco Systems Inc.',
+          buyer: 'Alpaca.',
+          type: 'Cost-based',
+          value: '5 325 857,78',
         },
         {
-          seller: "Microsoft Corporation",
-          buyer: "UBS Financial Services",
-          type: "Market-based",
-          value: "2 325 857,78",
+          seller: 'Microsoft Corporation',
+          buyer: 'UBS Financial Services',
+          type: 'Market-based',
+          value: '2 325 857,78',
         },
         {
-          seller: "Cisco Systems Inc.",
-          buyer: "Alpaca Inc.",
-          type: "Cost-based",
-          value: "1 325 857,78",
+          seller: 'Cisco Systems Inc.',
+          buyer: 'Alpaca Inc.',
+          type: 'Cost-based',
+          value: '1 325 857,78',
         },
       ],
     };
@@ -53,3 +53,14 @@ export default {
   },
 };
 </script>
+
+<style scoped lang="scss">
+.a.router-link-active:visited {
+  color: #42b983;
+}
+.home {
+  width: 100vw;
+  height: 90vh;
+  background-color: $main-background;
+}
+</style>

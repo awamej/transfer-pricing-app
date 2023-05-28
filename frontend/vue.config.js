@@ -10,5 +10,14 @@ module.exports = {
         changeOrigin: true
       },
     }
-  }
+  },
+  css: {
+    loaderOptions: {
+      sass: {
+        additionalData: `
+        @import "@/assets/scss/custom.scss";
+        `,
+      },
+    },
+  },
 }
