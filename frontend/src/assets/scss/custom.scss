@@ -1,4 +1,41 @@
-$main-background: #f6f3f1;
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1440px,
+  xxxl: 1680px,
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1400px,
+  xxxl: 1640px,
+) !default;
 
 @import "node_modules/bootstrap/scss/bootstrap.scss";
 @import "node_modules/bootstrap-vue/src/index.scss";
+
+@font-face {
+    font-family: "Lato";
+    font-weight: 400;
+    font-style: normal;
+    src: url("~@/assets/fonts/Lato/Lato-Regular.ttf") format("opentype");
+  }
+
+$main-font: "Lato";
+
+$main-background: #f6f3f1;
+$main-font-grey: #181A18;
+$label-grey: #828282;
+$main-green: #677867;
+
+h4 {
+  font-size: 4rem;
+  line-height: 4.8rem;
+  font-weight: 700;
+}

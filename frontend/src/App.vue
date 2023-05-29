@@ -1,33 +1,42 @@
 <template>
   <div id="app">
-    <nav>
+    <!-- <nav>
       <router-link to="/">Dashboard</router-link> |
       <router-link to="/transactions">Transactions</router-link>
-    </nav>
+    </nav> -->
     <router-view />
   </div>
 </template>
 
-<style>
+<style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: $main-font;
+  font-size: 16px;
+  font-weight: 400;
+  color: $main-font-grey;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
 }
 
-nav {
-  padding: 30px;
+html,
+body {
+  padding: 0;
+  margin: 0;
+  position: fixed;
+  width: 100%;
+  scroll-behavior: smooth;
+  height: 100%;
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
+html {
+  height: 100%;
+  font-size: 62.5%;
 }
-
-nav a.router-link-exact-active {
-  color: #42b983;
+body {
+  height: 100%;
+  min-height: 100%;
+  // background: $main-background;
 }
 
 .disabled {
