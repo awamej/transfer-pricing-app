@@ -9,7 +9,7 @@
         :key="index"
         :class="tab == 'Dashboard' ? 'nav-tab-selected' : 'nav-tab'"
       >
-        {{ tab }}
+        <router-link :to="'/' + tab.toLowerCase()">{{ tab }}</router-link>
       </div>
     </div>
   </div>
@@ -31,14 +31,13 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 1.5rem;
+  padding: 2rem 0.15rem 6.188rem;
   position: absolute;
-  width: 35rem;
-  height: 108rem;
+  width: 20rem;
+  height: 100%;
   left: 0;
   top: 0;
-  border-top-right-radius: 2.4rem;
-  border-bottom-right-radius: 2.4rem;
+  border-radius: 0 1.5rem 1.5rem 0;
   background-color: $main-green;
 }
 
@@ -46,11 +45,11 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0 0.8rem 13.4rem;
-  gap: 3rem;
+  padding: 0 0.5rem 8.375rem;
+  gap: 1.875rem;
   color: white;
-  width: 22.43rem;
-  height: 16.6rem;
+  width: 17rem;
+  height: 10.375rem;
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -61,11 +60,14 @@ export default {
   flex-direction: column;
   align-items: flex-start;
   padding: 0;
-  width: 27.5rem;
-  height: 25.6rem;
+  width: 17rem;
+  height: 16rem;
   flex: none;
   order: 1;
   flex-grow: 0;
+  font-size: 1.5rem;
+  line-height: 1.8rem;
+  font-weight: 600;
 }
 
 .nav-tab,
@@ -73,11 +75,11 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 2rem 2.2rem;
-  gap: 3.1rem;
-  width: 27.5rem;
-  height: 6.4rem;
-  border-radius: 0.8rem;
+  padding: 1.25rem 1.375rem;
+  gap: 1.938rem;
+  width: 17rem;
+  height: 4rem;
+  border-radius: 0.5rem;
   flex: none;
   order: 1;
   flex-grow: 0;
@@ -85,8 +87,18 @@ export default {
 
 .nav-tab {
   background: transparent;
+  a {
+    color: $windows;
+  }
 }
 .nav-tab-selected {
   background-color: $main-background;
+  a {
+    color: $main-font-grey;
+  }
+  a:hover {
+    text-decoration: none;
+    cursor: default;
+  }
 }
 </style>

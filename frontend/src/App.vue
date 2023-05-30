@@ -1,9 +1,5 @@
 <template>
   <div id="app">
-    <!-- <nav>
-      <router-link to="/">Dashboard</router-link> |
-      <router-link to="/transactions">Transactions</router-link>
-    </nav> -->
     <router-view />
   </div>
 </template>
@@ -30,13 +26,11 @@ body {
 }
 
 html {
-  height: 100%;
-  font-size: 62.5%;
+  font-size: 16px;
 }
 body {
   height: 100%;
   min-height: 100%;
-  // background: $main-background;
 }
 
 .disabled {
