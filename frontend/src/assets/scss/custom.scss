@@ -38,14 +38,29 @@ $main-font: "Lato";
 
 $main-background: #F4EFEB;
 $windows: #FCFCFC;
-$main-font-grey: #181A18;
+$primary-grey: #181A18;
 $label-grey: #828282;
 $main-green: #677867;
+
+.windows-font {
+  color: $windows;
+}
+
+.main-green-font {
+  color: $main-green
+}
 
 h4 {
   font-size: 2.5rem;
   line-height: 3rem;
   font-weight: 700;
+}
+
+h5 {
+  font-size: 1.5rem;
+  line-height: 1.318rem;
+  font-weight: 700;
+  color: $main-green
 }
 
 .b1-body-semi-bold {

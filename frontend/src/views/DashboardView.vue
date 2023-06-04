@@ -8,19 +8,33 @@
         <div class="title-row m-0">
           <div class="col-xl-1"></div>
           <div class="col-xl-10 main-col">
-            <span class="dashboard">Dashboard</span>
+            <h4 class="dashboard">Dashboard</h4>
           </div>
           <div class="col-xl-1"></div>
         </div>
         <div class="row m-0 p-o">
           <div class="col-xl-1"></div>
-          <div class="col-10 main-col">
-            <div class="transactions">x</div>
+          <div class="col-11 main-col">
+            <div class="transactions mb-5">
+              <h5 class="m-0 p-0">My transactions</h5>
+            </div>
+            <div class="actions mt-5">
+              <h5>Actions</h5>
+            </div>
           </div>
           <div class="col-xl-1"></div>
         </div>
       </div>
-      <div class="col-2"></div>
+      <div class="col-2 main-col">
+        <div class="title-row m-0"></div>
+        <div class="row m-0 p-o">
+          <div class="col-12 main-col pr-0">
+            <div class="info">
+              <h5>Info</h5>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -98,32 +112,34 @@ export default {
 }
 
 .dashboard {
-  position: absolute;
-  left: 0;
-  text-align: left;
-  font-weight: 700;
-  font-size: 2.5rem;
-  line-height: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  gap: 4.063;
   color: #5f6c5f;
 }
 
-.transactions {
+.transactions,
+.actions,
+.info {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 2rem 1.375rem;
   gap: 0.5rem;
-
-  width: 61.875rem;
-  height: 26.5rem;
-  background: #f4efeb;
-
   border: 0.5px solid #828282;
   border-radius: 8px;
-
   flex: none;
   order: 1;
   flex-grow: 0;
+  background: #f4efeb;
+  width: 90%;
+  height: 80%;
+}
+
+.info {
+  width: 100%;
 }
 </style>

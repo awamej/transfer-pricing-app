@@ -9,7 +9,7 @@
   font-family: $main-font;
   font-size: 16px;
   font-weight: 400;
-  color: $main-font-grey;
+  color: $primary-grey;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

@@ -1,14 +1,21 @@
 <template>
   <div class="side-menu">
     <div class="logo">
+      <img src="@/assets/easy-tp-logo.png" class="easy-tp-logo m-0 p-0" />
       <h4>Easy TP</h4>
     </div>
     <div class="nav-menu">
       <div
         v-for="(tab, index) in navTabs"
         :key="index"
-        :class="tab == 'Dashboard' ? 'nav-tab-selected' : 'nav-tab'"
+        :class="tab.toLowerCase() == path ? 'nav-tab-selected' : 'nav-tab'"
       >
+        <img
+          :src="require(`@/assets/${tab.toLowerCase()}.png`)"
+          :class="
+            tab.toLowerCase() == path ? 'nav-tab-icon-selected' : 'nav-tab-icon'
+          "
+        />
         <router-link :to="'/' + tab.toLowerCase()">{{ tab }}</router-link>
       </div>
     </div>
@@ -20,8 +27,16 @@ export default {
   name: 'SideMenu',
   data() {
     return {
+      path: '',
       navTabs: ['Dashboard', 'Users', 'Companies', 'Transactions'],
     };
+  },
+  created() {
+    this.path =
+      this.$route.path.slice(1) === ''
+        ? 'dashboard'
+        : this.$route.path.slice(1);
+    console.log(this.path, 'route');
   },
 };
 </script>
@@ -30,10 +45,10 @@ export default {
 .side-menu {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   padding: 2rem 0.15rem 6.188rem;
   position: absolute;
-  width: 20rem;
+  width: 100%;
   height: 100%;
   left: 0;
   top: 0;
@@ -55,10 +70,16 @@ export default {
   flex-grow: 0;
 }
 
+.easy-tp-logo {
+  width: 2.581rem;
+  height: 1.998rem;
+}
+
 .nav-menu {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  position: relative;
   padding: 0;
   width: 17rem;
   height: 16rem;
@@ -94,11 +115,25 @@ export default {
 .nav-tab-selected {
   background-color: $main-background;
   a {
-    color: $main-font-grey;
+    color: $primary-grey;
   }
   a:hover {
     text-decoration: none;
     cursor: default;
   }
+}
+
+.nav-tab-icon,
+.nav-tab-icon-selected {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.nav-tab-icon {
+  color: $windows;
+}
+
+.nav-tab-icon-selected {
+  color: $primary-grey;
 }
 </style>
