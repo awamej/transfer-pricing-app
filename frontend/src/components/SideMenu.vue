@@ -113,7 +113,7 @@ export default {
   }
 }
 .nav-tab-selected {
-  background-color: $main-background;
+  background-color: $background;
   a {
     color: $primary-grey;
   }

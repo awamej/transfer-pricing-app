@@ -91,7 +91,7 @@ export default {
 .home {
   width: 100vw;
   height: 100vh;
-  background-color: $main-background;
+  background-color: $background;
   position: relative;
   padding: 0.938rem;
 }
@@ -117,7 +117,7 @@ export default {
   align-items: flex-start;
   padding: 0;
   gap: 4.063;
-  color: #5f6c5f;
+  color: $main-green;
 }
 
 .transactions,
