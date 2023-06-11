@@ -14,7 +14,8 @@
   "dependencies": {
     "express": "^4.18.2",
     "method-override": "^3.0.0",
-    "mongodb": "^5.5.0"
+    "mongodb": "^5.5.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "http-proxy-middleware": "^2.0.6",

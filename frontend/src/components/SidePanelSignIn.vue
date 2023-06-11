@@ -83,7 +83,7 @@
         v-model="passwordToConfirm"
       />
       <div class="footer text-left">
-        <button class="login-button">Sign up</button>
+        <button class="login-button" @click="register">Sign up</button>
         <span class="link">Already have an account? Log in!</span>
       </div>
     </div>
@@ -91,6 +91,8 @@
 </template>
 
 <script>
+import * as api from '@/api.js';
+
 export default {
   name: 'SidePanelSignIn',
   data() {
@@ -102,6 +104,9 @@ export default {
     };
   },
   methods: {
+    async register() {
+      await api.registerUser(this.user);
+    },
     selectCompany() {
       console.log('company selected');
     },
