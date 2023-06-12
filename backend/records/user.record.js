@@ -1,12 +1,12 @@
 const { users } = require("../utils/db");
-const { ValidationError } = require("../utils/errors");
 const { v4: uuid } = require("uuid");
 const { ObjectId } = require('mongodb');
-const {createHmac} = require('crypto');
+const crypto = require('crypto');
 
 class User {
     constructor(data) {
-      this._id = data._id ?? new ObjectId(uuid());
+      const uuidString = uuid().replace(/-/g, '');
+      this._id = data._id ?? new ObjectId(uuidString.slice(0,24));
       this.email = data.email;
       this.firstName = data.firstName;
       this.lastName = data.lastName;
@@ -16,15 +16,16 @@ class User {
     }
   
     async insert() {
-      this.salt = crypto.randomBytes(16).toString('hex');
-      console.log('salt', this.salt);
-      const saltedPassword = salt + this.password;
-      console.log('salted password', saltedPassword);
-      this.password = createHmac('sha512').update(saltedPassword).digest('hex');
-      console.log('password', this.password, this.toObject());
-      const {insertedId} = await users.insertOne(this.toObject());
-      this._id = insertedId;
-      return insertedId;
+      const salt = crypto.randomBytes(16).toString('hex');
+      this.password = crypto.createHmac('sha512', salt).update(this.password).digest('hex');
+      try {
+          const {insertedId} = await users.insertOne(this.toObject(salt));
+          this._id = insertedId;
+          return [201, {message: "User registered with the id " + insertedId}];
+        } catch (e) {
+          console.error(e.message);
+          return [500, {error: "Something went wrong, please try again later."}];
+        }
     }
 
     async update() {
@@ -55,7 +56,7 @@ class User {
       return data.map((userData) => new User(userData));
     }
   
-    toObject() {
+    toObject(salt) {
       return {
       _id: this._id,
       email: this.email,
@@ -63,6 +64,7 @@ class User {
       lastName: this.lastName,
       company: this.company,
       password: this.password,
+      salt: salt,
       };
     }
   }
