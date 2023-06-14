@@ -1,7 +1,9 @@
 <template>
   <div class="side-panel">
-    <div>
-      <h4 class="main-green-font text-left">Sign in</h4>
+    <div :class="isLogin ? 'pt-5' : ''">
+      <h4 class="main-green-font text-left">
+        {{ isLogin ? 'Welcome' : 'Sign in' }}
+      </h4>
 
       <div class="input-title-login">
         <h6 class="text-left">Email</h6>
@@ -14,10 +16,11 @@
         v-model="user.email"
       />
 
-      <div class="input-title-login">
+      <div v-if="!isLogin" class="input-title-login">
         <h6 class="text-left">First name</h6>
       </div>
       <input
+        v-if="!isLogin"
         type="text"
         class="input-white"
         maxlength="30"
@@ -25,10 +28,11 @@
         v-model="user.firstName"
       />
 
-      <div class="input-title-login">
+      <div v-if="!isLogin" class="input-title-login">
         <h6 class="text-left">Last name</h6>
       </div>
       <input
+        v-if="!isLogin"
         type="text"
         class="input-white"
         maxlength="50"
@@ -36,10 +40,10 @@
         v-model="user.lastName"
       />
 
-      <div class="input-title-login">
+      <div v-if="!isLogin" class="input-title-login">
         <h6 class="text-left">Company</h6>
       </div>
-      <div>
+      <div v-if="!isLogin">
         <vue-multiselect
           :value="company"
           :options="companies"
@@ -72,10 +76,11 @@
         v-model="user.password"
       />
 
-      <div class="input-title-login">
+      <div v-if="!isLogin" class="input-title-login">
         <h6 class="text-left">Confirm password</h6>
       </div>
       <input
+        v-if="!isLogin"
         type="password"
         class="input-white"
         maxlength="50"
@@ -83,8 +88,14 @@
         v-model="passwordToConfirm"
       />
       <div class="footer text-left">
-        <button class="login-button" @click="register">Sign up</button>
-        <span class="link">Already have an account? Log in!</span>
+        <button class="login-button" @click="confirm">
+          {{ isLogin ? 'Log in' : 'Sign up' }}
+        </button>
+        <span @click="toggleLogin" class="link">{{
+          isLogin
+            ? 'Do not have an account? Sign up!'
+            : 'Already have an account? Log in!'
+        }}</span>
       </div>
     </div>
   </div>
@@ -94,9 +105,10 @@
 import * as api from '@/api.js';
 
 export default {
-  name: 'SidePanelSignIn',
+  name: 'SidePanelLogin',
   data() {
     return {
+      isLogin: true,
       user: {},
       company: {},
       companies: [],
@@ -104,8 +116,18 @@ export default {
     };
   },
   methods: {
-    async register() {
-      await api.registerUser(this.user);
+    async confirm() {
+      if (this.isLogin) {
+        const response = await api.loginUser(this.user);
+        if ('token' in response) {
+          this.$router.push('/');
+        }
+      } else {
+        await api.registerUser(this.user);
+      }
+    },
+    toggleLogin() {
+      this.isLogin = !this.isLogin;
     },
     selectCompany() {
       console.log('company selected');

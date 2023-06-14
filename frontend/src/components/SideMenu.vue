@@ -36,7 +36,6 @@ export default {
       this.$route.path.slice(1) === ''
         ? 'dashboard'
         : this.$route.path.slice(1);
-    console.log(this.path, 'route');
   },
 };
 </script>

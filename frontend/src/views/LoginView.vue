@@ -17,7 +17,7 @@
           </div>
         </div>
         <div class="col-xl-4 side-panel-container">
-          <SidePanelSignIn />
+          <SidePanelLogin />
         </div>
       </div>
     </div>
@@ -25,12 +25,12 @@
 </template>
 
 <script>
-import SidePanelSignIn from '@/components/SidePanelSignIn.vue';
+import SidePanelLogin from '@/components/SidePanelLogin.vue';
 
 export default {
   name: 'LoginView',
   components: {
-    SidePanelSignIn,
+    SidePanelLogin,
   },
 };
 </script>

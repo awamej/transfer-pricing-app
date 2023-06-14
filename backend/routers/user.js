@@ -4,10 +4,13 @@ const { User } = require('../records/user.record');
 const userRouter = Router();
 
 userRouter
-.post('/', async (req, res) => {
+.post('/register', async (req, res) => {
     const newUser = new User(req.body.user);
     [code, message] = await newUser.insert();
-    console.log(code, message);
+    res.status(code).send(message);
+})
+.post('/login', async (req, res) => {
+    [code, message] = await User.login(req.body.user.email, req.body.user.password);
     res.status(code).send(message);
 })
 

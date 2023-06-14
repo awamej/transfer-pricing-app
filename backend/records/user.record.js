@@ -2,6 +2,10 @@ const { users } = require("../utils/db");
 const { v4: uuid } = require("uuid");
 const { ObjectId } = require('mongodb');
 const crypto = require('crypto');
+const dotenv = require('dotenv');
+const jwt = require('jsonwebtoken');
+
+dotenv.config();
 
 class User {
     constructor(data) {
@@ -12,7 +16,7 @@ class User {
       this.lastName = data.lastName;
       this.company = data.company;
       this.password = data.password;
-      this.salt = '';
+      this.salt = data.salt ?? '';
     }
   
     async insert() {
@@ -43,8 +47,35 @@ class User {
       return deletedCount;
     }
   
+    static async login(email, password) {
+      const user = await this.findByEmail(email)
+      if (!user) {
+        return [401, {error: "User does not exist"}];
+      } else {
+        const hashToCompare = crypto.createHmac('sha512', user.salt).update(password).digest('hex');
+        if (hashToCompare !== user.password) {
+          return [401, {error: "Wrong password"}];
+        } else {
+          const jwtSecret = process.env.JWT_SECRET;
+          const data = {
+            userId: user._id,
+          };
+          const token = jwt.sign(data, jwtSecret, { expiresIn: "1h"});
+          return [200, {token: token}];
+        }
+      }
+    }
+
     static async findById(id) {
       const data = await users.findOne({ _id: new mongodb.ObjectID(id) })
+      if (data) {
+        return new User(data);
+      }
+      return null;
+    }
+
+    static async findByEmail(email) {
+      const data = await users.findOne({ email: email })
       if (data) {
         return new User(data);
       }

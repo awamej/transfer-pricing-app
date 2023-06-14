@@ -1,11 +1,11 @@
 const axios = require('axios');
 
-export async function getAllUsers() {
-  const response = await axios.get('/api/users');
+export async function registerUser(user) {
+  const response = await axios.post('/api/users/register', { user });
   return response.data;
 }
 
-export async function registerUser(user) {
-  const response = await axios.post('/api/users', { user });
+export async function loginUser(user) {
+  const response = await axios.post('/api/users/login', { user });
   return response.data;
 }

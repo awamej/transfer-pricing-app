@@ -41,7 +41,6 @@
 
 <script>
 import SideMenu from '@/components/SideMenu.vue';
-import * as api from '@/api.js';
 
 export default {
   name: 'DashboardView',
@@ -77,9 +76,6 @@ export default {
         },
       ],
     };
-  },
-  async created() {
-    await api.getAllUsers();
   },
 };
 </script>
